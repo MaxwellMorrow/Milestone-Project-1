@@ -8,9 +8,11 @@
     height: 100vmin;
     width: 100vmin;
     display: grid;
-
+    border: 2px;
     /* unsure how many columns maybe draw out my maze before hand */
-    grid-template-columns: 2 ;
-    grid-template-rows: 2;
+
+    /* starting with 20 by 20 grid to see how it looks  */
+    grid-template-columns: repeat(20, 1fr) ;
+    grid-template-rows: repeat(20, 1fr);
 
 }
