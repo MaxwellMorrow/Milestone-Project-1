@@ -5,7 +5,7 @@
 
 #game-board{
     background-color: aquamarine;
-    height: 100vmin;
+    height: 80vmin;
     width: 100vmin;
     display: grid;
     border: 2px;
