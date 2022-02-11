@@ -10,7 +10,7 @@
     display: grid;
 
     /* unsure how many columns maybe draw out my maze before hand */
-    grid-template-columns: ;
-    grid-template-rows: ;
+    grid-template-columns: 2 ;
+    grid-template-rows: 2;
 
 }
