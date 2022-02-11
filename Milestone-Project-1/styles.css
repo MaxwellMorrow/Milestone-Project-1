@@ -8,6 +8,8 @@
     height: 100vmin;
     width: 100vmin;
     display: grid;
+
+    /* unsure how many columns maybe draw out my maze before hand */
     grid-template-columns: ;
     grid-template-rows: ;
 
