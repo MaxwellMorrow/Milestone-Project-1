@@ -3,9 +3,30 @@
 
 
 
-// generate maze with walls 
+//  here we are creating data for the player div that we can change to move his position
+let playerData = {
+    x: 0,
+    y: 0
+}
+// player div selector 
+let playerDiv = document.querySelector("#player")
 
-
+// keypress event listener to move the player using the data 
+window.addEventListener("keypress",(e)=>{
+    
+    if(e.key === "w"){
+        playerData.y = playerData.y - 10
+    }else if(e.key === "s"){
+        playerData.y = playerData.y + 10 
+    }else if(e.key === "d"){
+        playerData.x = playerData.x + 10
+    }else if(e.key === "a"){
+        playerData.x = playerData.x - 10 
+    }
+    
+    playerDiv.style.left = `${playerData.x}px`
+    playerDiv.style.top = `${playerData.y}px`
+})
 
 
 
