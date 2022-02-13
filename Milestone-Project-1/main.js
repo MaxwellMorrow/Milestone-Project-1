@@ -9,27 +9,9 @@ let playerData = {
     y: 0
 }
 // player div selector 
-let playerDiv = document.querySelector("#player")
+const playerDiv = document.querySelector("#player")
 
 // keypress event listener to move the player using the data 
-window.addEventListener("keypress",(e)=>{
-    
-    playerDiv.getBoundingClientRect()
-    console.log(playerDiv.getBoundingClientRect())
-
-    if(e.key === "w"){
-        playerData.y = playerData.y - 10
-    }else if(e.key === "s"  ){
-        playerData.y = playerData.y + 10 
-    }else if(e.key === "d"){
-        playerData.x = playerData.x + 10
-    }else if(e.key === "a"){
-        playerData.x = playerData.x - 10 
-    }
-    
-    playerDiv.style.left = `${playerData.x}px`
-    playerDiv.style.top = `${playerData.y}px`
-})
 
 
 // in the process of getting the wall boundaries I first need to select them all with querySelectorAll
@@ -49,19 +31,82 @@ function getWallRects(){
 function getPlayerRect(){
   return  playerDiv.getBoundingClientRect()
 }
-
-// Need a function that can compare the BoundingRect of each thing to detect collosion
-function isCollision(rect1, rect2){
+getPlayerRect()
+// Need a function that can compare the BoundingRect of each thing to detect collosion in each direction
+function isCollisionWest(rect1, rect2){
     return(
-        rect1.left < rect2.right &&
-        rect1.top < rect2.bottom &&
-        rect1.right > rect2.left &&
-        rect1.bottom > rect2.top 
+        rect1.left + 10 < rect2.right 
+    )
+}
+function isCollisionNorth(rect1, rect2){
+    return(
+        
+        rect1.top + 10 < rect2.bottom
+    )
+}
+function isCollisionEast(rect1, rect2){
+    return(
+        rect1.right + 10 > rect2.left
+    )
+}
+function isCollisionSouth(rect1, rect2){
+    return(
+        rect1.bottom + 10 > rect2.top 
     )
 }
 
-console.log(getWallRects())
-console.log(getPlayerRect())
+// now we try and put it together into a function for checking movement 
+function checkMoveWest() {
+    const playerRect = getPlayerRect()
+    const insideWall = getWallRects().some(rect => isCollisionWest(playerRect, rect))
+    if(insideWall === true){
+        return false
+    }else {
+        return true}
+    }
+function checkMoveNorth() {
+    const playerRect = getPlayerRect()
+    const insideWall = getWallRects().some(rect => isCollisionNorth(playerRect, rect))
+    if(insideWall === true){
+        return false
+    }else {
+        return true}
+    }
+function checkMoveEast() {
+    const playerRect = getPlayerRect()
+    const insideWall = getWallRects().some(rect => isCollisionEast(playerRect, rect))
+    if(insideWall === true){
+        return false
+    }else {
+        return true}
+    }
+function checkMoveSouth() {
+    const playerRect = getPlayerRect()
+    const insideWall = getWallRects().some(rect => isCollisionSouth(playerRect, rect))
+    if(insideWall === true){
+        return false
+    }else {
+        return true}
+    }
+
+
+    window.addEventListener("keypress",(e)=>{
+    
+        if(e.key === "w" && checkMoveNorth() === false ){
+            playerData.y = playerData.y - 10
+        }else if(e.key === "s"  ){
+            playerData.y = playerData.y + 10 
+        }else if(e.key === "d"){
+            playerData.x = playerData.x + 10
+        }else if(e.key === "a"){
+            playerData.x = playerData.x - 10 
+        }
+        playerDiv.style.left = `${playerData.x}px`
+        playerDiv.style.top = `${playerData.y}px`
+        console.log(getPlayerRect())
+        console.log(checkMoveNorth())
+        console.log(isCollisionNorth())
+    })
 
 
 
