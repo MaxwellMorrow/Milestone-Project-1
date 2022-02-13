@@ -5,7 +5,15 @@
 
 // generate maze with walls 
 
+
+
+
+
+
+
+
 // maze will need walls character cannot walk through 
+// this  will probably be in the walk function itself for the character
 
 // add player character
 
