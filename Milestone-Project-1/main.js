@@ -149,11 +149,15 @@ let timeDisplay = document.querySelector(".time-display")
                 console.log(localElapsedTimeStorage)
 
                 let localElapsedSeconds = localElapsedTimeStorage.map( x => x / 1000)
-                
+
                 console.log(localElapsedSeconds)
+                // including this line to remove any previous times that are being displayed 
+                timeDisplay.innerHTML = "Time Display"
+                // for each of our seconds array we are creating an li to display that time 
                 localElapsedSeconds.forEach(time => {
                     let timeli = document.createElement("li")
                     timeli.textContent = `${time}`
+                    
                     timeDisplay.append(timeli)
                 })
             })
@@ -175,26 +179,3 @@ let timeDisplay = document.querySelector(".time-display")
 
 
 
-
-// maze will need walls character cannot walk through 
-// this  will probably be in the walk function itself for the character
-
-// add player character
-
-// player character move function
-
-// player character attack function
-
-// player character lose on hit
-
-// player character win on touch treasure 
-
-// add enemy characters
-
-// enemy character obstacle
-
-// enemy character removal
-
-// add treasure 
-
-// connect touching treasure with win condition 
