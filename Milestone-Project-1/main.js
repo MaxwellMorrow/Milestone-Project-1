@@ -25,49 +25,12 @@ let wallsData = [
     ,{x:21,y:6},{x:18,y:11},{x:18,y:12},{x:18,y:13},{x:18,y:14},{x:18,y:15},{x:19,y:15},{x:20,y:15}
 
 ]
-console.log(playerData)
-console.log(wallsData)
-
-let checkMoveRight = wallsData.some(element => {
-    // using .some to check all the values in our wallsData 
-    // x + 1 would move us one space right on our data so we need to check if we have placed a wall there 
-    // I think this is functioning properly currently returning true because there is a wall to the right of the player
-    return element.x === playerData.x + 1  && element.y === playerData.y
-    }
-)
-let checkMoveLeft = wallsData.some(element => {
-    // using the same check as above but to the left
-    return element.x === playerData.x - 1 && element.y === playerData.y
-    }
-)
-let checkMoveDown = wallsData.some(element => {
-    // using the same check as above but to the left
-    return element.x === playerData.x && element.y === playerData.y + 1 
-    }
-)
-let checkMoveUp = wallsData.some(element => {
-    // using the same check as above but to the left
-    return element.x === playerData.x && element.y === playerData.y - 1 
-    }
-)
-
-console.log(checkMoveUp)
-console.log(checkMoveDown)
-console.log(checkMoveLeft)
-console.log(checkMoveRight)
-// SUCESSS these functions do detect the walls next to them however we now need to incorporate that into our movement 
-
-
-
-
-
-
 
 // player div selector 
 const playerDiv = document.querySelector("#player")
 
 
-
+    
 
     window.addEventListener("keypress",(e)=>{
 
@@ -94,16 +57,36 @@ const playerDiv = document.querySelector("#player")
             return element.x === playerData.x && element.y === playerData.y - 1 
             }
         )
-            
+
         if(e.key === "s"){
            if(checkMoveDown === false){
             playerData.y += 1 
             playerDiv.style.top = playerData.y *50 - 50 + "px";
-           }
+           }}
+        if(e.key === "w"){
+            if(checkMoveUp === false){
+             playerData.y -= 1 
+             playerDiv.style.top = playerData.y * 50 - 50 + "px";
+            }}
+        if(e.key === "d"){
+            if(checkMoveRight === false){
+            playerData.x += 1 
+            playerDiv.style.left = playerData.x * 50 - 50 + "px" ;
+            }}
+        if(e.key === "a"){
+            if(checkMoveLeft === false){
+            playerData.x -= 1 
+            playerDiv.style.left = playerData.x * 50 - 50 + "px";
+            }}
+
+
+
+
+        console.log(playerDiv.style.left)
         console.log(playerData)
         
-    }
-});
+    })
+
     // window.addEventListener("keypress", (e) => {
     //     if (e.key === "d") {
     //       //  if (playerData.x !== WALL_DATA.x)
