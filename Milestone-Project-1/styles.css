@@ -161,3 +161,52 @@
     left: 0px;
     top: 0px;
 }
+
+.start-message{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, .7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-size: 5rem;
+    /* this stacks our text on top of our restart button */
+    flex-direction: column;
+
+}
+.win-message{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, .7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-size: 5rem;
+    /* this stacks our text on top of our restart button */
+    flex-direction: column;
+
+}
+.start-message button{
+    font-size: xx-large;
+    background-color: white;
+    cursor: pointer;
+}
+.win-message button{
+    font-size: xx-large;
+    background-color: white;
+    cursor: pointer;
+}
+.start-message.show{
+    display:flex
+}
+.win-message.show{
+    display: flex;
+}

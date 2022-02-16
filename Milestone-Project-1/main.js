@@ -22,14 +22,26 @@ let wallsData = [
     ,{x:9,y:11},{x:8,y:11},{x:8,y:12},{x:8,y:13},{x:8,y:14},{x:8,y:15},{x:9,y:15},{x:10,y:15},{x:11,y:15},{x:12,y:15},{x:13,y:15},{x:12,y:14}
     ,{x:12,y:13},{x:12,y:12},{x:12,y:11},{x:13,y:11},{x:13,y:12},{x:13,y:13},{x:13,y:14},{x:10,y:16},{x:10,y:17},{x:10,y:18},{x:13,y:16}
     ,{x:13,y:17},{x:13,y:18},{x:11,y:18},{x:12,y:18},{x:18,y:10},{x:19,y:10},{x:20,y:10},{x:21,y:10},{x:21,y:9},{x:21,y:8},{x:21,y:7}
-    ,{x:21,y:6},{x:18,y:11},{x:18,y:12},{x:18,y:13},{x:18,y:14},{x:18,y:15},{x:19,y:15},{x:20,y:15}
+    ,{x:21,y:6},{x:18,y:11},{x:18,y:12},{x:18,y:13},{x:18,y:14},{x:18,y:15},{x:19,y:15},{x:20,y:15},{x:12,y:0},{x:13,y:0},{x:14,y:0}
+    ,{x:16,y:0},{x:17,y:0},{x:18,y:0}
 
+]
+
+let treasureData = [
+    {x:19,y:16},{x:19,y:17},{x:20,y:17},{x:20,y:16}
 ]
 
 // player div selector 
 const playerDiv = document.querySelector("#player")
 
 
+let timeStorage = []
+
+let startBtn = document.querySelector("#start")
+let startDiv = document.querySelector(".start-message")
+
+
+let winDiv = document.querySelector(".win-message")
     
 
     window.addEventListener("keypress",(e)=>{
@@ -57,7 +69,14 @@ const playerDiv = document.querySelector("#player")
             return element.x === playerData.x && element.y === playerData.y - 1 
             }
         )
+        
+        let checkTreasure = treasureData.some(element =>{
+            // this will check if we are on the treasure not accounting for any movement
+            return element.x === playerData.x && element.y === playerData.y
+        })
 
+
+        // Simple if statements for our keypresses this can definitly be refactored 
         if(e.key === "s"){
            if(checkMoveDown === false){
             playerData.y += 1 
@@ -71,29 +90,50 @@ const playerDiv = document.querySelector("#player")
         if(e.key === "d"){
             if(checkMoveRight === false){
             playerData.x += 1 
-            playerDiv.style.left = playerData.x * 50 - 50 + "px" ;
+            playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;
             }}
         if(e.key === "a"){
             if(checkMoveLeft === false){
             playerData.x -= 1 
-            playerDiv.style.left = playerData.x * 50 - 50 + "px";
+            playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px";
             }}
-
-
-
-
-        console.log(playerDiv.style.left)
-        console.log(playerData)
+            // character needs to be over the treasure then moved to trigger a win could be better
+        if(checkTreasure === true){
+            console.log("winner!")
+            let endTime = new Date()
+            timeStorage.push(endTime)
+            winDiv.innerHTML = `You win! Your time ${timeStorage[1]-timeStorage[0]}
+            <button id="restart">Restart</button>`
+            winDiv.classList.add("show")
+            let restartBtn = document.querySelector("#restart")
+            restartBtn.addEventListener("click",()=>{
+                timeStorage = []
+                winDiv.classList.remove("show")
+                startDiv.classList.add("show")
+                playerData = {x: 10,y: 1}
+                playerDiv.style.top = playerData.y *50 - 50 + "px";
+                playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;
         
+            })
+        }
     })
 
-    // window.addEventListener("keypress", (e) => {
-    //     if (e.key === "d") {
-    //       //  if (playerData.x !== WALL_DATA.x)
-    //       playerData.x += 1;
-    //       playerDIV.style.left = playerData.x * 100 - 100 + "px";
-    //     }
-    //   });
+  
+    // Start event listener also gets our start time and pushes the time to our timeStorage array 
+    startBtn.addEventListener("click",()=>{
+        let startTime = new Date();
+        startDiv.classList.remove("show")
+        timeStorage.push(startTime)
+        console.log(timeStorage)
+    })
+    let restartBtn = document.querySelector("#restart")
+    
+    restartBtn.addEventListener("click",()=>{
+        timeStorage = []
+        winDiv.classList.remove("show")
+        startDiv.classList.add("show")
+
+    })
 
 
 
