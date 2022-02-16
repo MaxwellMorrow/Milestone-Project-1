@@ -5,13 +5,36 @@
 
 //  here we are creating data for the player div that we can change to move his position
 let playerData = {
-    x: 0,
-    y: 0
+    // this data represents where the player starts
+    x: 10,
+    y: 1
 }
+// here will be the giant wall of wall data. Refer to the game board plan in the planning folder to help understanding
+let wallsData = [
+    {x:9,y:1},{x:9,y:2},{x:8,y:2},{x:7,y:2},{x:6,y:2},{x:5,y:2},{x:5,y:2},{x:4,y:2},{x:3,y:2},{x:2,y:2},{x:1,y:2},{x:1,y:3},{x:1,y:4},
+    {x:1,y:5},{x:1,y:6},{x:1,y:7},{x:1,y:8},{x:1,y:9},{x:1,y:10},{x:1,y:11},{x:4,y:5},{x:5,y:5},{x:6,y:5},{x:7,y:5},{x:8,y:5},{x:9,y:5},
+    {x:10,y:5},{x:11,y:5},{x:12,y:5},{x:13,y:5},{x:11,y:1},{x:11,y:2},{x:11,y:3},{x:11,y:4},{x:15,y:1},{x:15,y:2},{x:15,y:3},{x:15,y:4},
+    {x:15,y:5},{x:16,y:5},{x:19,y:1},{x:19,y:2},{x:19,y:3},{x:19,y:4},{x:19,y:5},{x:20,y:5},{x:10,y:0},{x:1,y:6},{x:1,y:7},{x:1,y:8},{x:1,y:9}
+    ,{x:1,y:10},{x:1,y:6},{x:2,y:11},{x:3,y:11},{x:4,y:11},{x:5,y:11},{x:5,y:12},{x:5,y:13},{x:5,y:14},{x:5,y:15},{x:4,y:15},{x:3,y:15}
+    ,{x:2,y:15},{x:1,y:15},{x:0,y:15},{x:0,y:16},{x:0,y:17},{x:0,y:18},{x:0,y:19},{x:0,y:20},{x:0,y:21},{x:1,y:21},{x:2,y:21},{x:3,y:21}
+    ,{x:4,y:21},{x:5,y:21},{x:6,y:21},{x:7,y:21},{x:8,y:21},{x:9,y:21},{x:10,y:21},{x:11,y:21},{x:12,y:21},{x:13,y:21},{x:14,y:21},{x:15,y:21}
+    ,{x:16,y:21},{x:17,y:21},{x:18,y:21},{x:19,y:21},{x:20,y:21},{x:21,y:21},{x:21,y:20},{x:21,y:19},{x:21,y:18},{x:21,y:17},{x:21,y:16}
+    ,{x:9,y:11},{x:8,y:11},{x:8,y:12},{x:8,y:13},{x:8,y:14},{x:8,y:15},{x:9,y:15},{x:10,y:15},{x:11,y:15},{x:12,y:15},{x:13,y:15},{x:12,y:14}
+    ,{x:12,y:13},{x:12,y:12},{x:12,y:11},{x:13,y:11},{x:13,y:12},{x:13,y:13},{x:13,y:14},{x:10,y:16},{x:10,y:17},{x:10,y:18},{x:13,y:16}
+    ,{x:13,y:17},{x:13,y:18},{x:11,y:18},{x:12,y:18},{x:18,y:10},{x:19,y:10},{x:20,y:10},{x:21,y:10},{x:21,y:9},{x:21,y:8},{x:21,y:7}
+    ,{x:21,y:6},{x:18,y:11},{x:18,y:12},{x:18,y:13},{x:18,y:14},{x:18,y:15},{x:19,y:15},{x:20,y:15}
+    
+]
+
+
+
+
+
+
 // player div selector 
 const playerDiv = document.querySelector("#player")
 
-// keypress event listener to move the player using the data 
+
 
 
 // in the process of getting the wall boundaries I first need to select them all with querySelectorAll
@@ -25,13 +48,15 @@ function getWallRects(){
     // flatmap is a combination of map and flat getting an array thats falttened by one level.
     return wallsArray.flatMap(wall => wall.getBoundingClientRect())
 }
+
 // after running this function we have an array of all the wall boundaries
 
 // Now we need a function to get our playerRect
 function getPlayerRect(){
   return  playerDiv.getBoundingClientRect()
 }
-getPlayerRect()
+const playerRect = getPlayerRect()
+console.log(playerRect)
 // Need a function that can compare the BoundingRect of each thing to detect collosion in each direction
 function isCollisionWest(rect1, rect2){
     return(
@@ -39,8 +64,8 @@ function isCollisionWest(rect1, rect2){
     )
 }
 function isCollisionNorth(rect1, rect2){
+    console.log(rect1)
     return(
-        
         rect1.top + 10 < rect2.bottom
     )
 }
@@ -66,6 +91,7 @@ function checkMoveWest() {
     }
 function checkMoveNorth() {
     const playerRect = getPlayerRect()
+    console.log(playerRect)
     const insideWall = getWallRects().some(rect => isCollisionNorth(playerRect, rect))
     if(insideWall === true){
         return false
@@ -91,7 +117,7 @@ function checkMoveSouth() {
 
 
     window.addEventListener("keypress",(e)=>{
-    
+        const playerRect = getPlayerRect()
         if(e.key === "w" && checkMoveNorth() === false ){
             playerData.y = playerData.y - 10
         }else if(e.key === "s"  ){

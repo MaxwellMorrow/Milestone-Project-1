@@ -5,17 +5,21 @@
 
 #game-board{
     background-color: aquamarine;
-    height: 80vmin;
-    width: 100vmin;
+
+    /* gonna lock this down to 1000 x 1000 to get a handle on things */
+    height: 1000px;
+    width: 1000px;
     display: grid;
     border: 2px;
-    /* unsure how many columns maybe draw out my maze before hand */
+    
 
     /* starting with 20 by 20 grid to see how it looks  */
     grid-template-columns: repeat(20, 1fr) ;
     grid-template-rows: repeat(20, 1fr);
 
 }
+
+
 
 #wall-1{
     grid-column-start: 1;
