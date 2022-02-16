@@ -26,7 +26,7 @@ let wallsData = [
     ,{x:16,y:0},{x:17,y:0},{x:18,y:0}
 
 ]
-
+// these are the data coordinates for our treasure data 
 let treasureData = [
     {x:19,y:16},{x:19,y:17},{x:20,y:17},{x:20,y:16}
 ]
@@ -34,13 +34,14 @@ let treasureData = [
 // player div selector 
 const playerDiv = document.querySelector("#player")
 
-
+// used to store our start time and end time. Its cleared out when the restart button is pressed
 let timeStorage = []
+// this stores our elapsed time adding connection to local storage soon
+let elapsedTimeStorage = []
 
+// selecting start button, start div, and win div for later use.
 let startBtn = document.querySelector("#start")
 let startDiv = document.querySelector(".start-message")
-
-
 let winDiv = document.querySelector(".win-message")
     
 
@@ -80,6 +81,7 @@ let winDiv = document.querySelector(".win-message")
         if(e.key === "s"){
            if(checkMoveDown === false){
             playerData.y += 1 
+            // this only works because our board is 1000 x 1000 making each square exactly 50x50px 
             playerDiv.style.top = playerData.y *50 - 50 + "px";
            }}
         if(e.key === "w"){
@@ -90,6 +92,7 @@ let winDiv = document.querySelector(".win-message")
         if(e.key === "d"){
             if(checkMoveRight === false){
             playerData.x += 1 
+            // I had to subtract 9 from the initial player data because the player starts on x = 10 but the playerDiv's movement is relative to its original position
             playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;
             }}
         if(e.key === "a"){
@@ -99,18 +102,34 @@ let winDiv = document.querySelector(".win-message")
             }}
             // character needs to be over the treasure then moved to trigger a win could be better
         if(checkTreasure === true){
-            console.log("winner!")
+            // start time is defined after the start button is clicked and we define end time here
             let endTime = new Date()
+
+            // pushing the end time to our storage array 
             timeStorage.push(endTime)
-            winDiv.innerHTML = `You win! Your time ${timeStorage[1]-timeStorage[0]}
+            // we get our elapsed time by subtracting index 1 (end time) and index 0 (start time) and setting it to a variable
+            let elapsedTime = timeStorage[1] - timeStorage[0]
+
+            // storing out elapsed time in an array elapsedTimeStorage
+            elapsedTimeStorage.push(elapsedTime)
+
+            // Here after we win the game we want to display our win message by changing its class but first we put in the content 
+            winDiv.innerHTML = `You win! Your time ${elapsedTime}
             <button id="restart">Restart</button>`
             winDiv.classList.add("show")
+
+            // I could only get this event listener to work inside the function I think this is because of my adjustment of the innerHTML and needing to reselect the button
             let restartBtn = document.querySelector("#restart")
             restartBtn.addEventListener("click",()=>{
+                // this clears out our time storage array so it can track another time 
                 timeStorage = []
+                // hide our win message div by removing its class of show 
                 winDiv.classList.remove("show")
+                // show our start button again using the class of show
                 startDiv.classList.add("show")
+                // reset the player data to its start position
                 playerData = {x: 10,y: 1}
+                // reset the player div position to the start position by referencing  player Data 
                 playerDiv.style.top = playerData.y *50 - 50 + "px";
                 playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;
         
@@ -126,14 +145,8 @@ let winDiv = document.querySelector(".win-message")
         timeStorage.push(startTime)
         console.log(timeStorage)
     })
-    let restartBtn = document.querySelector("#restart")
-    
-    restartBtn.addEventListener("click",()=>{
-        timeStorage = []
-        winDiv.classList.remove("show")
-        startDiv.classList.add("show")
+   
 
-    })
 
 
 
