@@ -23,8 +23,40 @@ let wallsData = [
     ,{x:12,y:13},{x:12,y:12},{x:12,y:11},{x:13,y:11},{x:13,y:12},{x:13,y:13},{x:13,y:14},{x:10,y:16},{x:10,y:17},{x:10,y:18},{x:13,y:16}
     ,{x:13,y:17},{x:13,y:18},{x:11,y:18},{x:12,y:18},{x:18,y:10},{x:19,y:10},{x:20,y:10},{x:21,y:10},{x:21,y:9},{x:21,y:8},{x:21,y:7}
     ,{x:21,y:6},{x:18,y:11},{x:18,y:12},{x:18,y:13},{x:18,y:14},{x:18,y:15},{x:19,y:15},{x:20,y:15}
-    
+
 ]
+console.log(playerData)
+console.log(wallsData)
+
+let checkMoveRight = wallsData.some(element => {
+    // using .some to check all the values in our wallsData 
+    // x + 1 would move us one space right on our data so we need to check if we have placed a wall there 
+    // I think this is functioning properly currently returning true because there is a wall to the right of the player
+    return element.x === playerData.x + 1  && element.y === playerData.y
+    }
+)
+let checkMoveLeft = wallsData.some(element => {
+    // using the same check as above but to the left
+    return element.x === playerData.x - 1 && element.y === playerData.y
+    }
+)
+let checkMoveDown = wallsData.some(element => {
+    // using the same check as above but to the left
+    return element.x === playerData.x && element.y === playerData.y + 1 
+    }
+)
+let checkMoveUp = wallsData.some(element => {
+    // using the same check as above but to the left
+    return element.x === playerData.x && element.y === playerData.y - 1 
+    }
+)
+
+console.log(checkMoveUp)
+console.log(checkMoveDown)
+console.log(checkMoveLeft)
+console.log(checkMoveRight)
+// SUCESSS these functions do detect the walls next to them however we now need to incorporate that into our movement 
+
 
 
 
@@ -37,102 +69,49 @@ const playerDiv = document.querySelector("#player")
 
 
 
-// in the process of getting the wall boundaries I first need to select them all with querySelectorAll
-let walls = document.querySelectorAll(".wall")
-console.log(walls)
-// after we do this we have a node list of the walls so we take that list and creat an array out of it.
-let wallsArray = Array.from(walls)
-
-// now we have an array of elements and we try and get the boundaries of these elements using this function
-function getWallRects(){
-    // flatmap is a combination of map and flat getting an array thats falttened by one level.
-    return wallsArray.flatMap(wall => wall.getBoundingClientRect())
-}
-
-// after running this function we have an array of all the wall boundaries
-
-// Now we need a function to get our playerRect
-function getPlayerRect(){
-  return  playerDiv.getBoundingClientRect()
-}
-const playerRect = getPlayerRect()
-console.log(playerRect)
-// Need a function that can compare the BoundingRect of each thing to detect collosion in each direction
-function isCollisionWest(rect1, rect2){
-    return(
-        rect1.left + 10 < rect2.right 
-    )
-}
-function isCollisionNorth(rect1, rect2){
-    console.log(rect1)
-    return(
-        rect1.top + 10 < rect2.bottom
-    )
-}
-function isCollisionEast(rect1, rect2){
-    return(
-        rect1.right + 10 > rect2.left
-    )
-}
-function isCollisionSouth(rect1, rect2){
-    return(
-        rect1.bottom + 10 > rect2.top 
-    )
-}
-
-// now we try and put it together into a function for checking movement 
-function checkMoveWest() {
-    const playerRect = getPlayerRect()
-    const insideWall = getWallRects().some(rect => isCollisionWest(playerRect, rect))
-    if(insideWall === true){
-        return false
-    }else {
-        return true}
-    }
-function checkMoveNorth() {
-    const playerRect = getPlayerRect()
-    console.log(playerRect)
-    const insideWall = getWallRects().some(rect => isCollisionNorth(playerRect, rect))
-    if(insideWall === true){
-        return false
-    }else {
-        return true}
-    }
-function checkMoveEast() {
-    const playerRect = getPlayerRect()
-    const insideWall = getWallRects().some(rect => isCollisionEast(playerRect, rect))
-    if(insideWall === true){
-        return false
-    }else {
-        return true}
-    }
-function checkMoveSouth() {
-    const playerRect = getPlayerRect()
-    const insideWall = getWallRects().some(rect => isCollisionSouth(playerRect, rect))
-    if(insideWall === true){
-        return false
-    }else {
-        return true}
-    }
-
-
     window.addEventListener("keypress",(e)=>{
-        const playerRect = getPlayerRect()
-        if(e.key === "w" && checkMoveNorth() === false ){
-            playerData.y = playerData.y - 10
-        }else if(e.key === "s"  ){
-            playerData.y = playerData.y + 10 
-        }else if(e.key === "d"){
-            playerData.x = playerData.x + 10
-        }else if(e.key === "a"){
-            playerData.x = playerData.x - 10 
-        }
-        playerDiv.style.left = `${playerData.x}px`
-        playerDiv.style.top = `${playerData.y}px`
-        console.log(getPlayerRect())
-        console.log(checkMoveNorth())
-        console.log(isCollisionNorth())
-    })
+
+        // these checks need to be inside our move event listener so that they are checked every keypress otherwise they are static and dont work well
+        let checkMoveRight = wallsData.some(element => {
+            // using .some to check all the values in our wallsData 
+            // x + 1 would move us one space right on our data so we need to check if we have placed a wall there 
+            // I think this is functioning properly currently returning true because there is a wall to the right of the player
+            return element.x === playerData.x + 1  && element.y === playerData.y
+            }
+        )
+        let checkMoveLeft = wallsData.some(element => {
+            // using the same check as above but to the left
+            return element.x === playerData.x - 1 && element.y === playerData.y
+            }
+        )
+        let checkMoveDown = wallsData.some(element => {
+            // using the same check as above but to the left
+            return element.x === playerData.x && element.y === playerData.y + 1 
+            }
+        )
+        let checkMoveUp = wallsData.some(element => {
+            // using the same check as above but to the left
+            return element.x === playerData.x && element.y === playerData.y - 1 
+            }
+        )
+            
+        if(e.key === "s"){
+           if(checkMoveDown === false){
+            playerData.y += 1 
+            playerDiv.style.top = playerData.y *50 - 50 + "px";
+           }
+        console.log(playerData)
+        
+    }
+});
+    // window.addEventListener("keypress", (e) => {
+    //     if (e.key === "d") {
+    //       //  if (playerData.x !== WALL_DATA.x)
+    //       playerData.x += 1;
+    //       playerDIV.style.left = playerData.x * 100 - 100 + "px";
+    //     }
+    //   });
+
 
 
 
