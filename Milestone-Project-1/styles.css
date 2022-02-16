@@ -210,3 +210,9 @@
 .win-message.show{
     display: flex;
 }
+.time-display{
+    position: fixed;
+    top: 200px;
+    left: 1300px;
+    font-size: 3rem;
+}

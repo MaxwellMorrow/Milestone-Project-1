@@ -37,13 +37,16 @@ const playerDiv = document.querySelector("#player")
 // used to store our start time and end time. Its cleared out when the restart button is pressed
 let timeStorage = []
 // this stores our elapsed time adding connection to local storage soon
+
 let elapsedTimeStorage = []
+let localElapsedTimeStorage = []
+
 
 // selecting start button, start div, and win div for later use.
 let startBtn = document.querySelector("#start")
 let startDiv = document.querySelector(".start-message")
 let winDiv = document.querySelector(".win-message")
-    
+let timeDisplay = document.querySelector(".time-display")
 
     window.addEventListener("keypress",(e)=>{
 
@@ -79,24 +82,24 @@ let winDiv = document.querySelector(".win-message")
 
         // Simple if statements for our keypresses this can definitly be refactored 
         if(e.key === "s"){
-           if(checkMoveDown === false){
+           if(checkMoveDown === false && !startDiv.classList.contains("show")){
             playerData.y += 1 
             // this only works because our board is 1000 x 1000 making each square exactly 50x50px 
             playerDiv.style.top = playerData.y *50 - 50 + "px";
            }}
         if(e.key === "w"){
-            if(checkMoveUp === false){
+            if(checkMoveUp === false && !startDiv.classList.contains("show")){
              playerData.y -= 1 
              playerDiv.style.top = playerData.y * 50 - 50 + "px";
             }}
         if(e.key === "d"){
-            if(checkMoveRight === false){
+            if(checkMoveRight === false && !startDiv.classList.contains("show")){
             playerData.x += 1 
             // I had to subtract 9 from the initial player data because the player starts on x = 10 but the playerDiv's movement is relative to its original position
             playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;
             }}
         if(e.key === "a"){
-            if(checkMoveLeft === false){
+            if(checkMoveLeft === false && !startDiv.classList.contains("show")){
             playerData.x -= 1 
             playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px";
             }}
@@ -107,14 +110,21 @@ let winDiv = document.querySelector(".win-message")
 
             // pushing the end time to our storage array 
             timeStorage.push(endTime)
-            // we get our elapsed time by subtracting index 1 (end time) and index 0 (start time) and setting it to a variable
-            let elapsedTime = timeStorage[1] - timeStorage[0]
+            // we get our elapsed time by subtracting index 1 (end time) and index 0 (start time) and setting it to a variable. Divide by 1000 to get seconds
+            let elapsedTime = (timeStorage[1] - timeStorage[0])
 
             // storing out elapsed time in an array elapsedTimeStorage
             elapsedTimeStorage.push(elapsedTime)
 
+            // send times to local storage
+            localStorage.setItem("time",`${elapsedTimeStorage}`)
+            elapsedTimeStorage = []
+            
+            
+
+
             // Here after we win the game we want to display our win message by changing its class but first we put in the content 
-            winDiv.innerHTML = `You win! Your time ${elapsedTime}
+            winDiv.innerHTML = `You win! Your time ${elapsedTime / 1000} seconds!
             <button id="restart">Restart</button>`
             winDiv.classList.add("show")
 
@@ -132,7 +142,20 @@ let winDiv = document.querySelector(".win-message")
                 // reset the player div position to the start position by referencing  player Data 
                 playerDiv.style.top = playerData.y *50 - 50 + "px";
                 playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;
-        
+                
+
+                // placing a call to local storage in the reset button hoping to get our times to display properly
+                localElapsedTimeStorage.push(parseInt(localStorage.getItem("time")))
+                console.log(localElapsedTimeStorage)
+
+                let localElapsedSeconds = localElapsedTimeStorage.map( x => x / 1000)
+                
+                console.log(localElapsedSeconds)
+                localElapsedSeconds.forEach(time => {
+                    let timeli = document.createElement("li")
+                    timeli.textContent = `${time}`
+                    timeDisplay.append(timeli)
+                })
             })
         }
     })
@@ -141,9 +164,10 @@ let winDiv = document.querySelector(".win-message")
     // Start event listener also gets our start time and pushes the time to our timeStorage array 
     startBtn.addEventListener("click",()=>{
         let startTime = new Date();
+        // hides the start screen after the button is clicked
         startDiv.classList.remove("show")
         timeStorage.push(startTime)
-        console.log(timeStorage)
+        
     })
    
 
