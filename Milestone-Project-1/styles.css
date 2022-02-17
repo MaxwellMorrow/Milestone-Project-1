@@ -192,6 +192,7 @@
     font-size: 5rem;
     /* this stacks our text on top of our restart button */
     flex-direction: column;
+    z-index: 1;
 
 }
 .start-message button{
@@ -215,4 +216,10 @@
     top: 200px;
     left: 1300px;
     font-size: 3rem;
+}
+.controls-display{
+    position: fixed;
+    top: 475px;
+    left: 1200px;
+
 }

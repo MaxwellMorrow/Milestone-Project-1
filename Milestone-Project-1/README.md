@@ -19,3 +19,4 @@ Conditions
 
 credit to asset pack 
 https://pixel-poem.itch.io/dungeon-assetpuck 
+credit to wasd control icon <a href="https://www.flaticon.com/free-icons/wasd" title="wasd icons">Wasd icons created by xnimrodx - Flaticon</a>

@@ -36,8 +36,9 @@ const playerDiv = document.querySelector("#player")
 
 // used to store our start time and end time. Its cleared out when the restart button is pressed
 let timeStorage = []
-// this stores our elapsed time adding connection to local storage soon
 
+
+// using these arrays to manage our time, could probably eliminate one with a refactor
 let elapsedTimeStorage = []
 let localElapsedTimeStorage = []
 
@@ -157,7 +158,6 @@ let timeDisplay = document.querySelector(".time-display")
                 localElapsedSeconds.forEach(time => {
                     let timeli = document.createElement("li")
                     timeli.textContent = `${time}`
-                    
                     timeDisplay.append(timeli)
                 })
             })
