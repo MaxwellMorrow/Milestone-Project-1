@@ -209,7 +209,7 @@
     z-index: 1;
 
 }
-.win-message{
+.win-display{
     position: fixed;
     top: 0;
     left: 0;
@@ -231,7 +231,7 @@
     background-color: white;
     cursor: pointer;
 }
-.win-message button{
+.win-display button{
     font-size: xx-large;
     background-color: white;
     cursor: pointer;
@@ -239,7 +239,7 @@
 .start-message.show{
     display:flex
 }
-.win-message.show{
+.win-display.show{
     display: flex;
 }
 .time-display{

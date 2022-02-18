@@ -33,4 +33,3 @@ let enemiesData = [
 ]
 
 let elapsedTimeStorage = []
-let localElapsedTimeStorage = []
