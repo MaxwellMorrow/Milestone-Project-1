@@ -11,80 +11,42 @@ const enemy3Div = document.querySelector("#enemy3")
 // helper functions 
 
 
+    // Event listeners
     window.addEventListener("keypress",(e)=>{
 
-        let checkMoveRight = wallsData.some(element => {
-            // using .some to check all the values in our wallsData 
-            // x + 1 would move us one space right on our data so we need to check if we have placed a wall there 
-            // I think this is functioning properly currently returning true because there is a wall to the right of the player
-            return element.x === playerData.x + 1  && element.y === playerData.y
-            }
-        )
-        let checkMoveLeft = wallsData.some(element => {
-            // using the same check as above but to the left
-            return element.x === playerData.x - 1 && element.y === playerData.y
-            }
-        )
-        let checkMoveDown = wallsData.some(element => {
-            // using the same check as above but to the left
-            return element.x === playerData.x && element.y === playerData.y + 1 
-            }
-        )
-        let checkMoveUp = wallsData.some(element => {
-            // using the same check as above but to the left
-            return element.x === playerData.x && element.y === playerData.y - 1 
-            }
-        )
+        let checkMoveRight = wallsData.some(element =>  element.x === playerData.x + 1  && element.y === playerData.y)
+        let checkMoveLeft = wallsData.some(element => element.x === playerData.x - 1 && element.y === playerData.y)
+        let checkMoveDown = wallsData.some(element => element.x === playerData.x && element.y === playerData.y + 1)
+        let checkMoveUp = wallsData.some(element => element.x === playerData.x && element.y === playerData.y - 1)
+        let checkTreasure = treasureData.some(element => element.x === playerData.x && element.y === playerData.y)
+        let gameStarted = !startDiv.classList.contains("show")
         
-        let checkTreasure = treasureData.some(element =>{
-            // this will check if we are on the treasure not accounting for any movement
-            return element.x === playerData.x && element.y === playerData.y
-        })
-
 
         // Simple if statements for our keypresses this can definitly be refactored 
-        if(e.key === "s"){
-           if(checkMoveDown === false && !startDiv.classList.contains("show")){
+        if(e.key === "s" && checkMoveDown === false && gameStarted){
             playerData.y += 1 
-            // this only works because our board is 1000 x 1000 making each square exactly 50x50px 
             playerDiv.style.top = playerData.y *50 - 50 + "px";
-           }}
-        if(e.key === "w"){
-            if(checkMoveUp === false && !startDiv.classList.contains("show")){
+        }
+        if(e.key === "w" && checkMoveUp === false && gameStarted){
              playerData.y -= 1 
              playerDiv.style.top = playerData.y * 50 - 50 + "px";
-            }}
-        if(e.key === "d"){
-            if(checkMoveRight === false && !startDiv.classList.contains("show")){
+            }
+        if(e.key === "d" && checkMoveRight === false && gameStarted){
             playerData.x += 1 
-            // I had to subtract 9 from the initial player data because the player starts on x = 10 but the playerDiv's movement is relative to its original position
-            playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;
-            }}
-        if(e.key === "a"){
-            if(checkMoveLeft === false && !startDiv.classList.contains("show")){
+            playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;// I had to subtract 9 from the initial player data because the player starts on x = 10 but the playerDiv's movement is relative to its original position
+            }
+        if(e.key === "a" && checkMoveLeft === false && gameStarted){
             playerData.x -= 1 
             playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px";
-            }}
-            // character needs to be over the treasure then moved to trigger a win could be better
+            }
+
         if(checkTreasure === true){
-            // start time is defined after the start button is clicked and we define end time here
             let endTime = new Date()
-
-            // pushing the end time to our storage array 
-            timeStorage.push(endTime)
-            // we get our elapsed time by subtracting index 1 (end time) and index 0 (start time) and setting it to a variable. Divide by 1000 to get seconds
-            let elapsedTime = (timeStorage[1] - timeStorage[0])
-
-            // storing out elapsed time in an array elapsedTimeStorage
+            let elapsedTime = endTime - startTime
             elapsedTimeStorage.push(elapsedTime)
-
-            // send times to local storage
             localStorage.setItem("time",`${elapsedTimeStorage}`)
             elapsedTimeStorage = []
-            
-            
-
-
+    
             // Here after we win the game we want to display our win message by changing its class but first we put in the content 
             winDiv.innerHTML = `You win! Your time ${elapsedTime / 1000} seconds!
             <button id="restart">Restart</button>`
