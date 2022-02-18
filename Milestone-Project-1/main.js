@@ -45,34 +45,47 @@ function resetPlayer(){
     playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;
 }
 
+
     // Event listeners
     window.addEventListener("keypress",(e)=>{
 
-        let checkMoveRight = wallsData.some(element =>  element.x === playerData.x + 1  && element.y === playerData.y)
-        let checkMoveLeft = wallsData.some(element => element.x === playerData.x - 1 && element.y === playerData.y)
-        let checkMoveDown = wallsData.some(element => element.x === playerData.x && element.y === playerData.y + 1)
-        let checkMoveUp = wallsData.some(element => element.x === playerData.x && element.y === playerData.y - 1)
-        let checkTreasure = treasureData.some(element => element.x === playerData.x && element.y === playerData.y)
+        let checkMoveRight = wallsData.some(wall =>  wall.x === playerData.x + 1  && wall.y === playerData.y)
+        let checkMoveLeft = wallsData.some(wall => wall.x === playerData.x - 1 && wall.y === playerData.y)
+        let checkMoveDown = wallsData.some(wall => wall.x === playerData.x && wall.y === playerData.y + 1)
+        let checkMoveUp = wallsData.some(wall => wall.x === playerData.x && wall.y === playerData.y - 1)
+        let checkTreasure = treasureData.some(treasure => treasure.x === playerData.x && treasure.y === playerData.y)
         let gameStarted = !startDiv.classList.contains("show")
         let gameRestarted = !winDiv.classList.contains("show")
-        
+        let checkLose = enemiesData.some(enemy => enemy.x === playerData.x && enemy.y === playerData.y)
 
         // Simple if statements for our keypresses this can definitly be refactored 
         if(e.key === "s" && checkMoveDown === false && gameStarted && gameRestarted){
             playerData.y += 1 
             playerDiv.style.top = playerData.y *50 - 50 + "px";
+            if(checkLose === true){
+                resetPlayer()
+            }
         }
         if(e.key === "w" && checkMoveUp === false && gameStarted && gameRestarted){
              playerData.y -= 1 
              playerDiv.style.top = playerData.y * 50 - 50 + "px";
+             if(checkLose === true){
+                resetPlayer()
+            }
             }
         if(e.key === "d" && checkMoveRight === false && gameStarted && gameRestarted){
             playerData.x += 1 
             playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;// I had to subtract 9 from the initial player data because the player starts on x = 10 but the playerDiv's movement is relative to its original position
+            if(checkLose === true){
+                resetPlayer()
+            }
             }
         if(e.key === "a" && checkMoveLeft === false && gameStarted && gameRestarted){
             playerData.x -= 1 
             playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px";
+            if(checkLose === true){
+                resetPlayer()
+            }
             }
 
         if(checkTreasure === true){
@@ -104,6 +117,8 @@ function resetPlayer(){
     moveEnemy3()
     setInterval(moveEnemy3,(enemy3Speed * 10))
     displayTimes()
+
+    
 
 
 
