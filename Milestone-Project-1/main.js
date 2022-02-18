@@ -98,11 +98,11 @@ function resetPlayer(){
 
     // On load 
     moveEnemy1()
-    setInterval(moveEnemy1,10000)
+    setInterval(moveEnemy1,(enemy1Speed * 10))
     moveEnemy2()
-    setInterval(moveEnemy2,10000)
+    setInterval(moveEnemy2,(enemy2Speed * 10))
     moveEnemy3()
-    setInterval(moveEnemy3,10000)
+    setInterval(moveEnemy3,(enemy3Speed * 10))
     displayTimes()
 
 

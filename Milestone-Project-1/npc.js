@@ -1,5 +1,8 @@
 
-
+// change speed of enemies here
+let enemy1Speed = 500
+let enemy2Speed = 1000
+let enemy3Speed = 750
 
 function wait(time){
     return new Promise(resolve => setTimeout(resolve, time))
@@ -44,38 +47,38 @@ async function enemy3WalkDown(time){
 
 
 async function moveEnemy1(){
-    await enemy1WalkUp(1000)
-    await enemy1WalkUp(1000)
-    await enemy1WalkUp(1000)
-    await enemy1WalkUp(1000)
-    await enemy1WalkUp(1000)
-    await enemy1WalkDown(1000)
-    await enemy1WalkDown(1000)
-    await enemy1WalkDown(1000)
-    await enemy1WalkDown(1000)
-    await enemy1WalkDown(1000)
+    await enemy1WalkUp(enemy1Speed)
+    await enemy1WalkUp(enemy1Speed)
+    await enemy1WalkUp(enemy1Speed)
+    await enemy1WalkUp(enemy1Speed)
+    await enemy1WalkUp(enemy1Speed)
+    await enemy1WalkDown(enemy1Speed)
+    await enemy1WalkDown(enemy1Speed)
+    await enemy1WalkDown(enemy1Speed)
+    await enemy1WalkDown(enemy1Speed)
+    await enemy1WalkDown(enemy1Speed)
  }
  async function moveEnemy2(){
-    await enemy2WalkDown(1000)
-    await enemy2WalkDown(1000)
-    await enemy2WalkDown(1000)
-    await enemy2WalkDown(1000)
-    await enemy2WalkDown(1000)
-    await enemy2WalkUp(1000)
-    await enemy2WalkUp(1000)
-    await enemy2WalkUp(1000)
-    await enemy2WalkUp(1000)
-    await enemy2WalkUp(1000)
+    await enemy2WalkDown(enemy2Speed)
+    await enemy2WalkDown(enemy2Speed)
+    await enemy2WalkDown(enemy2Speed)
+    await enemy2WalkDown(enemy2Speed)
+    await enemy2WalkDown(enemy2Speed)
+    await enemy2WalkUp(enemy2Speed)
+    await enemy2WalkUp(enemy2Speed)
+    await enemy2WalkUp(enemy2Speed)
+    await enemy2WalkUp(enemy2Speed)
+    await enemy2WalkUp(enemy2Speed)
  }
  async function moveEnemy3(){
-    await enemy3WalkDown(1000)
-    await enemy3WalkDown(1000)
-    await enemy3WalkDown(1000)
-    await enemy3WalkDown(1000)
-    await enemy3WalkDown(1000)
-    await enemy3WalkUp(1000)
-    await enemy3WalkUp(1000)
-    await enemy3WalkUp(1000)
-    await enemy3WalkUp(1000)
-    await enemy3WalkUp(1000)
+    await enemy3WalkDown(enemy3Speed)
+    await enemy3WalkDown(enemy3Speed)
+    await enemy3WalkDown(enemy3Speed)
+    await enemy3WalkDown(enemy3Speed)
+    await enemy3WalkDown(enemy3Speed)
+    await enemy3WalkUp(enemy3Speed)
+    await enemy3WalkUp(enemy3Speed)
+    await enemy3WalkUp(enemy3Speed)
+    await enemy3WalkUp(enemy3Speed)
+    await enemy3WalkUp(enemy3Speed)
  }
