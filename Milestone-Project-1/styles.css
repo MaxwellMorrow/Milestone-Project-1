@@ -169,6 +169,7 @@
     width: 50px;
     height: 50px;
     background-color: red;
+    position: relative;
 }
 #enemy2{
     grid-column-start: 14;
@@ -178,6 +179,7 @@
     width: 50px;
     height: 50px;
     background-color: red;
+    position: relative;
 }
 #enemy3{
     grid-column-start: 17;
@@ -187,6 +189,7 @@
     width: 50px;
     height: 50px;
     background-color: red;
+    position: relative;
 }
 
 .start-message{

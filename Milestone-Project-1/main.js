@@ -1,56 +1,18 @@
-
-
-
-
-
-//  here we are creating data for the player div that we can change to move his position
-let playerData = {
-    // this data represents where the player starts
-    x: 10,
-    y: 1
-}
-// here will be the giant wall of wall data. Refer to the game board plan in the planning folder to help understanding
-let wallsData = [
-    {x:9,y:1},{x:9,y:2},{x:8,y:2},{x:7,y:2},{x:6,y:2},{x:5,y:2},{x:5,y:2},{x:4,y:2},{x:3,y:2},{x:2,y:2},{x:1,y:2},{x:1,y:3},{x:1,y:4},
-    {x:1,y:5},{x:1,y:6},{x:1,y:7},{x:1,y:8},{x:1,y:9},{x:1,y:10},{x:1,y:11},{x:4,y:5},{x:5,y:5},{x:6,y:5},{x:7,y:5},{x:8,y:5},{x:9,y:5},
-    {x:10,y:5},{x:11,y:5},{x:12,y:5},{x:13,y:5},{x:11,y:1},{x:11,y:2},{x:11,y:3},{x:11,y:4},{x:15,y:1},{x:15,y:2},{x:15,y:3},{x:15,y:4},
-    {x:15,y:5},{x:16,y:5},{x:19,y:1},{x:19,y:2},{x:19,y:3},{x:19,y:4},{x:19,y:5},{x:20,y:5},{x:10,y:0},{x:1,y:6},{x:1,y:7},{x:1,y:8},{x:1,y:9}
-    ,{x:1,y:10},{x:1,y:6},{x:2,y:11},{x:3,y:11},{x:4,y:11},{x:5,y:11},{x:5,y:12},{x:5,y:13},{x:5,y:14},{x:5,y:15},{x:4,y:15},{x:3,y:15}
-    ,{x:2,y:15},{x:1,y:15},{x:0,y:15},{x:0,y:16},{x:0,y:17},{x:0,y:18},{x:0,y:19},{x:0,y:20},{x:0,y:21},{x:1,y:21},{x:2,y:21},{x:3,y:21}
-    ,{x:4,y:21},{x:5,y:21},{x:6,y:21},{x:7,y:21},{x:8,y:21},{x:9,y:21},{x:10,y:21},{x:11,y:21},{x:12,y:21},{x:13,y:21},{x:14,y:21},{x:15,y:21}
-    ,{x:16,y:21},{x:17,y:21},{x:18,y:21},{x:19,y:21},{x:20,y:21},{x:21,y:21},{x:21,y:20},{x:21,y:19},{x:21,y:18},{x:21,y:17},{x:21,y:16}
-    ,{x:9,y:11},{x:8,y:11},{x:8,y:12},{x:8,y:13},{x:8,y:14},{x:8,y:15},{x:9,y:15},{x:10,y:15},{x:11,y:15},{x:12,y:15},{x:13,y:15},{x:12,y:14}
-    ,{x:12,y:13},{x:12,y:12},{x:12,y:11},{x:13,y:11},{x:13,y:12},{x:13,y:13},{x:13,y:14},{x:10,y:16},{x:10,y:17},{x:10,y:18},{x:13,y:16}
-    ,{x:13,y:17},{x:13,y:18},{x:11,y:18},{x:12,y:18},{x:18,y:10},{x:19,y:10},{x:20,y:10},{x:21,y:10},{x:21,y:9},{x:21,y:8},{x:21,y:7}
-    ,{x:21,y:6},{x:18,y:11},{x:18,y:12},{x:18,y:13},{x:18,y:14},{x:18,y:15},{x:19,y:15},{x:20,y:15},{x:12,y:0},{x:13,y:0},{x:14,y:0}
-    ,{x:16,y:0},{x:17,y:0},{x:18,y:0}
-
-]
-// these are the data coordinates for our treasure data 
-let treasureData = [
-    {x:19,y:16},{x:19,y:17},{x:20,y:17},{x:20,y:16}
-]
-
-// player div selector 
+// Selectors
 const playerDiv = document.querySelector("#player")
+const startBtn = document.querySelector("#start")
+const startDiv = document.querySelector(".start-message")
+const winDiv = document.querySelector(".win-message")
+const timeDisplay = document.querySelector(".time-display")
+const enemy1Div = document.querySelector("#enemy1")
+const enemy2Div = document.querySelector("#enemy2")
+const enemy3Div = document.querySelector("#enemy3")
 
-// used to store our start time and end time. Its cleared out when the restart button is pressed
-let timeStorage = []
+// helper functions 
 
-// using these arrays to manage our time, could probably eliminate one with a refactor
-let elapsedTimeStorage = []
-let localElapsedTimeStorage = []
-
-
-// selecting start button, start div, and win div for later use.
-let startBtn = document.querySelector("#start")
-let startDiv = document.querySelector(".start-message")
-let winDiv = document.querySelector(".win-message")
-let timeDisplay = document.querySelector(".time-display")
 
     window.addEventListener("keypress",(e)=>{
 
-        // these checks need to be inside our move event listener so that they are checked every keypress otherwise they are static and dont work well
         let checkMoveRight = wallsData.some(element => {
             // using .some to check all the values in our wallsData 
             // x + 1 would move us one space right on our data so we need to check if we have placed a wall there 
@@ -173,50 +135,8 @@ let timeDisplay = document.querySelector(".time-display")
         
     })
 
-let enemiesData = [
-        {x:7,y:11},
-        {x:14,y:5},
-        {x:17,y:5}
-    ]
-    
-const enemy1Div = document.querySelector("#enemy1")
-const enemy2Div = document.querySelector("#enemy2")
-const enemy3Div = document.querySelector("#enemy3")
 
-
-//  Using this function to automate movement of enemy characters
- function wait(time){
-     return new Promise(resolve => setTimeout(resolve, time))
- }
-   
-// enemy1Div , enemy2Div, enemy3Div
-
-
-// wanted to make this into one function for each npc but I think I can refactor later 
-async function enemy1WalkUp(time){
-    enemiesData[0].y - 1 
-    enemy1Div.style.top = (enemiesData[0].y - 10) * 50 - 50 + "px"
-   await wait(time)
-    
-}
-async function enemy2WalkUp(time){
-    enemiesData[1].y - 1 
-    enemy1Div.style.top = (enemiesData[0].y - 4) * 50 - 50 + "px"
-    await wait(time)
-    
-}
-async function enemy3WalkUp(time){
-    enemiesData[2].y - 1 
-    enemy1Div.style.top = (enemiesData[0].y - 4) * 50 - 50 + "px"
-    await wait(time)
-    
-}
-
-
-enemy1WalkUp(5000)
-
-console.log(enemy1WalkUp)
-console.log(enemiesData)
+moveEnemy1()
 
 
 
