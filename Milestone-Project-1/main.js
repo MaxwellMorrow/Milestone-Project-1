@@ -80,21 +80,31 @@ function resetPlayer(){
             resetPlayer()
             showWin()
             displayTimes()
-            
-            
         }
     })
 
   
     // Start event listener also gets our start time and pushes the time to our timeStorage array 
-    startBtn.addEventListener("click", startGame)
-    
+    startBtn.addEventListener("click", ()=>{
+        startGame()
+        // want to connect enemy move functions to start but still working on it
+    })
+
     restartBtn.addEventListener("click",()=>{
         winDiv.classList.remove("show")// hide our win message div by removing its class of show 
         startDiv.classList.add("show")// show our start button again using the class of show
     })
-displayTimes()
-moveEnemy1()
+
+
+    // On load 
+    moveEnemy1()
+    setInterval(moveEnemy1,10000)
+    moveEnemy2()
+    setInterval(moveEnemy2,10000)
+    moveEnemy3()
+    setInterval(moveEnemy3,10000)
+    displayTimes()
+
 
 
 
