@@ -37,7 +37,6 @@ const playerDiv = document.querySelector("#player")
 // used to store our start time and end time. Its cleared out when the restart button is pressed
 let timeStorage = []
 
-
 // using these arrays to manage our time, could probably eliminate one with a refactor
 let elapsedTimeStorage = []
 let localElapsedTimeStorage = []
@@ -173,9 +172,51 @@ let timeDisplay = document.querySelector(".time-display")
         timeStorage.push(startTime)
         
     })
+
+let enemiesData = [
+        {x:7,y:11},
+        {x:14,y:5},
+        {x:17,y:5}
+    ]
+    
+const enemy1Div = document.querySelector("#enemy1")
+const enemy2Div = document.querySelector("#enemy2")
+const enemy3Div = document.querySelector("#enemy3")
+
+
+//  Using this function to automate movement of enemy characters
+ function wait(time){
+     return new Promise(resolve => setTimeout(resolve, time))
+ }
    
+// enemy1Div , enemy2Div, enemy3Div
 
 
+// wanted to make this into one function for each npc but I think I can refactor later 
+async function enemy1WalkUp(time){
+    enemiesData[0].y - 1 
+    enemy1Div.style.top = (enemiesData[0].y - 10) * 50 - 50 + "px"
+   await wait(time)
+    
+}
+async function enemy2WalkUp(time){
+    enemiesData[1].y - 1 
+    enemy1Div.style.top = (enemiesData[0].y - 4) * 50 - 50 + "px"
+    await wait(time)
+    
+}
+async function enemy3WalkUp(time){
+    enemiesData[2].y - 1 
+    enemy1Div.style.top = (enemiesData[0].y - 4) * 50 - 50 + "px"
+    await wait(time)
+    
+}
+
+
+enemy1WalkUp(5000)
+
+console.log(enemy1WalkUp)
+console.log(enemiesData)
 
 
 

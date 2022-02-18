@@ -161,6 +161,33 @@
     left: 0px;
     top: 0px;
 }
+#enemy1{
+    grid-column-start: 7;
+    grid-column-end: 7;
+    grid-row-start: 11;
+    grid-row-end: 11;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+}
+#enemy2{
+    grid-column-start: 14;
+    grid-column-end: 14;
+    grid-row-start: 5;
+    grid-row-end: 5;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+}
+#enemy3{
+    grid-column-start: 17;
+    grid-column-end: 17;
+    grid-row-start: 5;
+    grid-row-end: 5;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+}
 
 .start-message{
     position: fixed;
@@ -174,8 +201,9 @@
     align-items: center;
     color:white;
     font-size: 5rem;
-    /* this stacks our text on top of our restart button */
+   
     flex-direction: column;
+    z-index: 1;
 
 }
 .win-message{
@@ -190,7 +218,7 @@
     align-items: center;
     color:white;
     font-size: 5rem;
-    /* this stacks our text on top of our restart button */
+    
     flex-direction: column;
     z-index: 1;
 
