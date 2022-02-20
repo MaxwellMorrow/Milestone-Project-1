@@ -12,6 +12,7 @@ const restartBtn = document.querySelector("#restart")
 const toggleWall = document.querySelector(".toggle-wall")
 const wallToggle = document.querySelector(".wall-toggle")
 
+
 // time variables 
 let startTime
 let endTime
@@ -42,8 +43,8 @@ function displayTimes(){
 })}
 function resetPlayer(){
     playerData = {x: 10,y: 1}// reset the player data
-    playerDiv.style.top = playerData.y *50 - 50 + "px"; // reset the player div position
-    playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;
+    playerDiv.style.top = playerData.y *playerSize - playerSize + "px"; // reset the player div position
+    playerDiv.style.left = (playerData.x - 9) * playerSize - playerSize + "px" ;
 }
 
 
@@ -64,28 +65,28 @@ function resetPlayer(){
         // Simple if statements for our keypresses this can definitly be refactored 
         if(e.key === "s" && checkMoveDown === false && gameStarted && gameRestarted){
             playerData.y += 1 
-            playerDiv.style.top = playerData.y *50 - 50 + "px";
+            playerDiv.style.top = playerData.y *playerSize - playerSize + "px";
             if(checkEnemyCollision === true){
                 resetPlayer()
             }
         }
         if(e.key === "w" && checkMoveUp === false && gameStarted && gameRestarted){
              playerData.y -= 1 
-             playerDiv.style.top = playerData.y * 50 - 50 + "px";
+             playerDiv.style.top = playerData.y * playerSize - playerSize + "px";
              if(checkEnemyCollision === true){
                 resetPlayer()
             }
             }
         if(e.key === "d" && checkMoveRight === false && gameStarted && gameRestarted){
             playerData.x += 1 
-            playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px" ;// subtract 9 from the initial player data because the player starts on x = 10 but the playerDiv's movement is relative to its original position
+            playerDiv.style.left = (playerData.x - 9) * playerSize - playerSize + "px" ;// subtract 9 from the initial player data because the player starts on x = 10 but the playerDiv's movement is relative to its original position
             if(checkEnemyCollision === true){
                 resetPlayer()
             }
             }
         if(e.key === "a" && checkMoveLeft === false && gameStarted && gameRestarted){
             playerData.x -= 1 
-            playerDiv.style.left = (playerData.x - 9) * 50 - 50 + "px";
+            playerDiv.style.left = (playerData.x - 9) * playerSize - playerSize + "px";
             if(checkEnemyCollision === true){
                 resetPlayer()
             }

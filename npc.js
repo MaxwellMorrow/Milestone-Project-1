@@ -10,37 +10,37 @@ function wait(time){
 
 async function enemy1WalkUp(time){
     enemiesData[0].y -= 1 
-    enemy1Div.style.top = (enemiesData[0].y - 10) * 50 - 50 + "px"
+    enemy1Div.style.top = (enemiesData[0].y - 10) * playerSize - playerSize + "px"
    await wait(time)
     
 }
 async function enemy2WalkUp(time){
     enemiesData[1].y -= 1 
-    enemy2Div.style.top = (enemiesData[1].y - 4) * 50 - 50 + "px"
+    enemy2Div.style.top = (enemiesData[1].y - 4) * playerSize - playerSize + "px"
     await wait(time)
     
 }
 async function enemy3WalkUp(time){
     enemiesData[2].y -= 1 
-    enemy3Div.style.top = (enemiesData[2].y - 4) * 50 - 50 + "px"
+    enemy3Div.style.top = (enemiesData[2].y - 4) * playerSize - playerSize + "px"
     await wait(time)
     
 }
 async function enemy1WalkDown(time){
     enemiesData[0].y += 1 
-    enemy1Div.style.top = (enemiesData[0].y - 10) * 50 - 50 + "px"
+    enemy1Div.style.top = (enemiesData[0].y - 10) * playerSize - playerSize + "px"
    await wait(time)
     
 }
 async function enemy2WalkDown(time){
     enemiesData[1].y += 1 
-    enemy2Div.style.top = (enemiesData[1].y - 4) * 50 - 50 + "px"
+    enemy2Div.style.top = (enemiesData[1].y - 4) * playerSize - playerSize + "px"
     await wait(time)
     
 }
 async function enemy3WalkDown(time){
     enemiesData[2].y += 1 
-    enemy3Div.style.top = (enemiesData[2].y - 4) * 50 - 50 + "px"
+    enemy3Div.style.top = (enemiesData[2].y - 4) * playerSize - playerSize + "px"
     await wait(time)
     
 }

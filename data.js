@@ -1,3 +1,6 @@
+// I want these to load before npc.js and main.js placing them here should do that
+let boardSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--board-size")) // using this to try and make the game responsive
+let playerSize = boardSize / 20
 
 
 let playerData = {

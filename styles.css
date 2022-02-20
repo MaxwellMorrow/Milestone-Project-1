@@ -1,14 +1,18 @@
 
 
-
+:root {
+    --board-size: 1000;
+    --board-size-px: 1000px;
+    --player-size: calc(var(var(--board-size-px)) / 20)
+}
 /* target gameboard div and create gameboard using CSS grid */
 
 #game-board{
     background-color: aquamarine;
 
     /* gonna lock this down to 1000 x 1000 to get a handle on things */
-    height: 1000px;
-    width: 1000px;
+    height: var(--board-size-px);
+    width: var(--board-size-px);
     display: grid;
     border: 2px;
     
@@ -165,6 +169,9 @@
     grid-row-start: 13;
     grid-row-end: 15;
     background-color: gold;
+    font-size: 1.5rem;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .wall-toggle{
     grid-column-start: 19;
@@ -172,6 +179,9 @@
     grid-row-start: 16;
     grid-row-end: 18;
     background-color: rgb(81, 204, 9);
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
 }
 .wall-toggle.hide{
     display: none;
@@ -183,8 +193,8 @@
     grid-row-end: 1;
     background-color:green;
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: var(--player-size);
+    height: var(--player-size);
     left: 0px;
     top: 0px;
 }
@@ -193,8 +203,8 @@
     grid-column-end: 7;
     grid-row-start: 11;
     grid-row-end: 11;
-    width: 50px;
-    height: 50px;
+    width: var(--player-size);
+    height: var(--player-size);
     background-color: red;
     position: relative;
 }
@@ -203,8 +213,8 @@
     grid-column-end: 14;
     grid-row-start: 5;
     grid-row-end: 5;
-    width: 50px;
-    height: 50px;
+    width: var(--player-size);
+    height: var(--player-size);
     background-color: red;
     position: relative;
 }
@@ -213,8 +223,8 @@
     grid-column-end: 17;
     grid-row-start: 5;
     grid-row-end: 5;
-    width: 50px;
-    height: 50px;
+    width: var(--player-size);
+    height: var(--player-size);
     background-color: red;
     position: relative;
 }
