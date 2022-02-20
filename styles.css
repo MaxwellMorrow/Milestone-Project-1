@@ -23,10 +23,10 @@
 
 #wall-1{
     grid-column-start: 1;
-  grid-column-end: 10;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  background-color: orange;
+    grid-column-end: 10;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    background-color: orange;
 }
 
 #wall-2{
@@ -142,12 +142,39 @@
     grid-row-end: 19;
     background-color: orange;
 }
+#wall-18{
+    grid-column-start: 6;
+    grid-column-end: 6;
+    grid-row-start: 11;
+    grid-row-end: 11;
+    background-color: orange;
+}
+.toggle-wall{
+    grid-column-start: 10;
+    grid-column-end: 12;
+    grid-row-start: 11;
+    grid-row-end: 11;
+    background-color: orange;
+}
+.toggle-wall.hide{
+    display: none;
+}
 #treasure{
+    grid-column-start: 9;
+    grid-column-end: 11;
+    grid-row-start: 13;
+    grid-row-end: 15;
+    background-color: gold;
+}
+.wall-toggle{
     grid-column-start: 19;
     grid-column-end: 21;
     grid-row-start: 16;
     grid-row-end: 18;
-    background-color: gold;
+    background-color: rgb(81, 204, 9);
+}
+.wall-toggle.hide{
+    display: none;
 }
 #player{
     grid-column-start: 10;
