@@ -67,7 +67,7 @@ function getPlayerSize(){
 
         // Simple if statements for our keypresses this can definitly be refactored 
         if(e.key === "s" && checkMoveDown === false && gameStarted && gameRestarted){
-            getPlayerSize()// running this function on keypress ensures we have the proper functionality for the size of the board currently.
+            
             playerData.y += 1 
             playerDiv.style.top = playerData.y *playerSize - playerSize + "px";
             if(checkEnemyCollision === true){
@@ -75,7 +75,7 @@ function getPlayerSize(){
             }
         }
         if(e.key === "w" && checkMoveUp === false && gameStarted && gameRestarted){
-            getPlayerSize()
+            
              playerData.y -= 1 
              playerDiv.style.top = playerData.y * playerSize - playerSize + "px";
              if(checkEnemyCollision === true){
@@ -83,7 +83,7 @@ function getPlayerSize(){
             }
             }
         if(e.key === "d" && checkMoveRight === false && gameStarted && gameRestarted){
-            getPlayerSize()
+            
             playerData.x += 1 
             playerDiv.style.left = (playerData.x - 9) * playerSize - playerSize + "px" ;// subtract 9 from the initial player data because the player starts on x = 10 but the playerDiv's movement is relative to its original position
             if(checkEnemyCollision === true){
@@ -91,7 +91,7 @@ function getPlayerSize(){
             }
             }
         if(e.key === "a" && checkMoveLeft === false && gameStarted && gameRestarted){
-            getPlayerSize()
+            
             playerData.x -= 1 
             playerDiv.style.left = (playerData.x - 9) * playerSize - playerSize + "px";
             if(checkEnemyCollision === true){
@@ -138,7 +138,8 @@ function getPlayerSize(){
     moveEnemy3()
     setInterval(moveEnemy3,(enemy3Speed * 10))
     displayTimes()
-
+    // this will get our playersize every 5 seconds retaining our functionaility if we change our window size 
+    setInterval(getPlayerSize, 5000)
     
 
 
