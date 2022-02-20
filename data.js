@@ -2,7 +2,6 @@
 let boardSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--board-size")) // using this to try and make the game responsive
 let playerSize = boardSize / 20
 
-
 let playerData = {
     // this data represents where the player starts
     x: 10,

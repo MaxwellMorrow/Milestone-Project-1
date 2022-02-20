@@ -3,7 +3,7 @@
 :root {
     --board-size: 1000;
     --board-size-px: 1000px;
-    --player-size: calc(var(var(--board-size-px)) / 20)
+    --player-size: calc(var(--board-size-px) / 20)
 }
 /* target gameboard div and create gameboard using CSS grid */
 
@@ -290,4 +290,28 @@
     top: 475px;
     left: 1200px;
 
+}
+
+
+@media screen
+and (max-width: 500px) {
+    :root{
+        --board-size: 250;
+        --board-size-px: 250px;
+        --player-size: calc(var(--board-size-px) / 20);
+    }
+    .start-message{
+        font-size: 1rem;
+    }
+    .win-display{
+        font-size: 1rem;
+    }
+    .wall-toggle{
+        font-size: .5rem;
+    }
+    #treasure{
+        font-size: .5rem;
+    }
+
+    
 }

@@ -46,7 +46,10 @@ function resetPlayer(){
     playerDiv.style.top = playerData.y *playerSize - playerSize + "px"; // reset the player div position
     playerDiv.style.left = (playerData.x - 9) * playerSize - playerSize + "px" ;
 }
-
+function getPlayerSize(){
+    boardSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--board-size")) // using this to try and make the game responsive
+    playerSize = boardSize / 20
+}
 
 
     // Event listeners
@@ -64,6 +67,7 @@ function resetPlayer(){
 
         // Simple if statements for our keypresses this can definitly be refactored 
         if(e.key === "s" && checkMoveDown === false && gameStarted && gameRestarted){
+            getPlayerSize()// running this function on keypress ensures we have the proper functionality for the size of the board currently.
             playerData.y += 1 
             playerDiv.style.top = playerData.y *playerSize - playerSize + "px";
             if(checkEnemyCollision === true){
@@ -71,6 +75,7 @@ function resetPlayer(){
             }
         }
         if(e.key === "w" && checkMoveUp === false && gameStarted && gameRestarted){
+            getPlayerSize()
              playerData.y -= 1 
              playerDiv.style.top = playerData.y * playerSize - playerSize + "px";
              if(checkEnemyCollision === true){
@@ -78,6 +83,7 @@ function resetPlayer(){
             }
             }
         if(e.key === "d" && checkMoveRight === false && gameStarted && gameRestarted){
+            getPlayerSize()
             playerData.x += 1 
             playerDiv.style.left = (playerData.x - 9) * playerSize - playerSize + "px" ;// subtract 9 from the initial player data because the player starts on x = 10 but the playerDiv's movement is relative to its original position
             if(checkEnemyCollision === true){
@@ -85,6 +91,7 @@ function resetPlayer(){
             }
             }
         if(e.key === "a" && checkMoveLeft === false && gameStarted && gameRestarted){
+            getPlayerSize()
             playerData.x -= 1 
             playerDiv.style.left = (playerData.x - 9) * playerSize - playerSize + "px";
             if(checkEnemyCollision === true){
