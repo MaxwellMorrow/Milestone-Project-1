@@ -1,355 +1,343 @@
-
-
 :root {
-    --board-size: 1000;
-    --board-size-px: 1000px;
-    --player-size: calc(var(--board-size-px) / 20)
+  --board-size: 1000;
+  --board-size-px: 1000px;
+  --player-size: calc(var(--board-size-px) / 20);
 }
 /* target gameboard div and create gameboard using CSS grid */
 
-#game-board{
-    background-color: aquamarine;
+#game-board {
+  background-color: aquamarine;
 
-    /* gonna lock this down to 1000 x 1000 to get a handle on things */
-    height: var(--board-size-px);
-    width: var(--board-size-px);
+  /* gonna lock this down to 1000 x 1000 to get a handle on things */
+  height: var(--board-size-px);
+  width: var(--board-size-px);
+  display: grid;
+  border: 2px;
+
+  /* starting with 20 by 20 grid to see how it looks  */
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+}
+
+#wall-1 {
+  grid-column-start: 1;
+  grid-column-end: 10;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  background-color: orange;
+}
+
+#wall-2 {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 11;
+  background-color: orange;
+}
+#wall-3 {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 11;
+  grid-row-end: 11;
+  background-color: orange;
+}
+
+#wall-4 {
+  grid-column-start: 5;
+  grid-column-end: 5;
+  grid-row-start: 11;
+  grid-row-end: 15;
+  background-color: orange;
+}
+#wall-5 {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  grid-row-start: 15;
+  grid-row-end: 15;
+  background-color: orange;
+}
+#wall-6 {
+  grid-column-start: 11;
+  grid-column-end: 11;
+  grid-row-start: 1;
+  grid-row-end: 6;
+  background-color: orange;
+}
+#wall-7 {
+  grid-column-start: 11;
+  grid-column-end: 11;
+  grid-row-start: 1;
+  grid-row-end: 6;
+  background-color: orange;
+}
+#wall-8 {
+  grid-column-start: 4;
+  grid-column-end: 14;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  background-color: orange;
+}
+#wall-9 {
+  grid-column-start: 15;
+  grid-column-end: 15;
+  grid-row-start: 1;
+  grid-row-end: 6;
+  background-color: orange;
+}
+#wall-10 {
+  grid-column-start: 15;
+  grid-column-end: 17;
+  grid-row-start: 5;
+  grid-row-end: 5;
+  background-color: orange;
+}
+#wall-11 {
+  grid-column-start: 19;
+  grid-column-end: 21;
+  grid-row-start: 1;
+  grid-row-end: 6;
+  background-color: orange;
+}
+#wall-12 {
+  grid-column-start: 18;
+  grid-column-end: 21;
+  grid-row-start: 10;
+  grid-row-end: 16;
+  background-color: orange;
+}
+#wall-13 {
+  grid-column-start: 8;
+  grid-column-end: 10;
+  grid-row-start: 11;
+  grid-row-end: 11;
+  background-color: orange;
+}
+#wall-14 {
+  grid-column-start: 8;
+  grid-column-end: 8;
+  grid-row-start: 11;
+  grid-row-end: 16;
+  background-color: orange;
+}
+#wall-15 {
+  grid-column-start: 8;
+  grid-column-end: 12;
+  grid-row-start: 15;
+  grid-row-end: 15;
+  background-color: orange;
+}
+#wall-16 {
+  grid-column-start: 10;
+  grid-column-end: 14;
+  grid-row-start: 15;
+  grid-row-end: 19;
+  background-color: orange;
+}
+#wall-17 {
+  grid-column-start: 12;
+  grid-column-end: 14;
+  grid-row-start: 11;
+  grid-row-end: 19;
+  background-color: orange;
+}
+#wall-18 {
+  grid-column-start: 6;
+  grid-column-end: 6;
+  grid-row-start: 11;
+  grid-row-end: 11;
+  background-color: orange;
+}
+.toggle-wall {
+  grid-column-start: 10;
+  grid-column-end: 12;
+  grid-row-start: 11;
+  grid-row-end: 11;
+  background-color: orange;
+}
+.toggle-wall.hide {
+  display: none;
+}
+#treasure {
+  grid-column-start: 9;
+  grid-column-end: 11;
+  grid-row-start: 13;
+  grid-row-end: 15;
+  background-color: gold;
+  font-size: 1.5rem;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.wall-toggle {
+  grid-column-start: 19;
+  grid-column-end: 21;
+  grid-row-start: 16;
+  grid-row-end: 18;
+  background-color: rgb(81, 204, 9);
+  font-size: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+.wall-toggle.hide {
+  display: none;
+}
+#player {
+  grid-column-start: 10;
+  grid-column-end: 10;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  background-color: green;
+  position: relative;
+  width: var(--player-size);
+  height: var(--player-size);
+  left: 0px;
+  top: 0px;
+}
+#enemy1 {
+  grid-column-start: 7;
+  grid-column-end: 7;
+  grid-row-start: 11;
+  grid-row-end: 11;
+  width: var(--player-size);
+  height: var(--player-size);
+  background-color: red;
+  position: relative;
+}
+#enemy2 {
+  grid-column-start: 14;
+  grid-column-end: 14;
+  grid-row-start: 5;
+  grid-row-end: 5;
+  width: var(--player-size);
+  height: var(--player-size);
+  background-color: red;
+  position: relative;
+}
+#enemy3 {
+  grid-column-start: 17;
+  grid-column-end: 17;
+  grid-row-start: 5;
+  grid-row-end: 5;
+  width: var(--player-size);
+  height: var(--player-size);
+  background-color: red;
+  position: relative;
+}
+
+.start-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 5rem;
+
+  flex-direction: column;
+  z-index: 1;
+}
+.win-display {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 5rem;
+
+  flex-direction: column;
+  z-index: 1;
+}
+.start-message button {
+  font-size: xx-large;
+  background-color: white;
+  cursor: pointer;
+}
+.win-display button {
+  font-size: xx-large;
+  background-color: white;
+  cursor: pointer;
+}
+.start-message.show {
+  display: flex;
+}
+.win-display.show {
+  display: flex;
+}
+.time-display {
+  position: fixed;
+  top: 200px;
+  left: 1300px;
+  font-size: 3rem;
+}
+.controls-display {
+  position: fixed;
+  top: 475px;
+  left: 1200px;
+}
+.mobile-controls {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  :root {
+    --board-size: 320;
+    --board-size-px: 320px;
+    --player-size: calc(var(--board-size-px) / 20);
+  }
+  .start-message {
+    font-size: 1rem;
+  }
+  .win-display {
+    font-size: 1rem;
+  }
+  .wall-toggle {
+    font-size: 0.5rem;
+  }
+  #treasure {
+    font-size: 0.5rem;
+  }
+  .mobile-controls {
     display: grid;
-    border: 2px;
-    
-
-    /* starting with 20 by 20 grid to see how it looks  */
-    grid-template-columns: repeat(20, 1fr) ;
-    grid-template-rows: repeat(20, 1fr);
-
-}
-
-
-
-#wall-1{
-    grid-column-start: 1;
-    grid-column-end: 10;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    background-color: orange;
-}
-
-#wall-2{
-    grid-column-start: 1;
-    grid-column-end: 1;
-    grid-row-start: 1;
-    grid-row-end: 11;
-    background-color: orange;
-}
-#wall-3{
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 11;
-    grid-row-end: 11;
-    background-color: orange;
-}
-
-#wall-4{
-    grid-column-start: 5;
-    grid-column-end: 5;
-    grid-row-start: 11;
-    grid-row-end: 15;
-    background-color: orange;
-}
-#wall-5{
-    grid-column-start: 1;
-    grid-column-end: 6;
-    grid-row-start: 15;
-    grid-row-end: 15;
-    background-color: orange;
-}
-#wall-6{
-    grid-column-start: 11;
-    grid-column-end: 11;
-    grid-row-start: 1;
-    grid-row-end: 6;
-    background-color: orange;
-}
-#wall-7{
-    grid-column-start: 11;
-    grid-column-end: 11;
-    grid-row-start: 1;
-    grid-row-end: 6;
-    background-color: orange;
-}
-#wall-8{
-    grid-column-start: 4;
-    grid-column-end: 14;
-    grid-row-start: 5;
-    grid-row-end: 6;
-    background-color: orange;
-}
-#wall-9{
-    grid-column-start: 15;
-    grid-column-end: 15;
-    grid-row-start: 1;
-    grid-row-end: 6;
-    background-color: orange;
-}
-#wall-10{
-    grid-column-start: 15;
-    grid-column-end: 17;
-    grid-row-start: 5;
-    grid-row-end: 5;
-    background-color: orange;
-}
-#wall-11{
-    grid-column-start: 19;
-    grid-column-end: 21;
-    grid-row-start: 1;
-    grid-row-end: 6;
-    background-color: orange;
-}
-#wall-12{
-    grid-column-start: 18;
-    grid-column-end: 21;
-    grid-row-start: 10;
-    grid-row-end: 16;
-    background-color: orange;
-}
-#wall-13{
-    grid-column-start: 8;
-    grid-column-end: 10;
-    grid-row-start: 11;
-    grid-row-end: 11;
-    background-color: orange;
-}
-#wall-14{
-    grid-column-start: 8;
-    grid-column-end: 8;
-    grid-row-start: 11;
-    grid-row-end: 16;
-    background-color: orange;
-}
-#wall-15{
-    grid-column-start: 8;
-    grid-column-end: 12;
-    grid-row-start: 15;
-    grid-row-end: 15;
-    background-color: orange;
-}
-#wall-16{
-    grid-column-start: 10;
-    grid-column-end: 14;
-    grid-row-start: 15;
-    grid-row-end: 19;
-    background-color: orange;
-}
-#wall-17{
-    grid-column-start: 12;
-    grid-column-end: 14;
-    grid-row-start: 11;
-    grid-row-end: 19;
-    background-color: orange;
-}
-#wall-18{
-    grid-column-start: 6;
-    grid-column-end: 6;
-    grid-row-start: 11;
-    grid-row-end: 11;
-    background-color: orange;
-}
-.toggle-wall{
-    grid-column-start: 10;
-    grid-column-end: 12;
-    grid-row-start: 11;
-    grid-row-end: 11;
-    background-color: orange;
-}
-.toggle-wall.hide{
-    display: none;
-}
-#treasure{
-    grid-column-start: 9;
-    grid-column-end: 11;
-    grid-row-start: 13;
-    grid-row-end: 15;
-    background-color: gold;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+  }
+  .mobile-controls button {
     font-size: 1.5rem;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.wall-toggle{
-    grid-column-start: 19;
-    grid-column-end: 21;
-    grid-row-start: 16;
-    grid-row-end: 18;
-    background-color: rgb(81, 204, 9);
-    font-size: 2rem;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-}
-.wall-toggle.hide{
-    display: none;
-}
-#player{
-    grid-column-start: 10;
-    grid-column-end: 10;
-    grid-row-start: 1;
-    grid-row-end: 1;
-    background-color:green;
-    position: relative;
-    width: var(--player-size);
-    height: var(--player-size);
-    left: 0px;
-    top: 0px;
-}
-#enemy1{
-    grid-column-start: 7;
-    grid-column-end: 7;
-    grid-row-start: 11;
-    grid-row-end: 11;
-    width: var(--player-size);
-    height: var(--player-size);
-    background-color: red;
-    position: relative;
-}
-#enemy2{
-    grid-column-start: 14;
-    grid-column-end: 14;
-    grid-row-start: 5;
-    grid-row-end: 5;
-    width: var(--player-size);
-    height: var(--player-size);
-    background-color: red;
-    position: relative;
-}
-#enemy3{
-    grid-column-start: 17;
-    grid-column-end: 17;
-    grid-row-start: 5;
-    grid-row-end: 5;
-    width: var(--player-size);
-    height: var(--player-size);
-    background-color: red;
-    position: relative;
-}
-
-.start-message{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0, .7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    color:white;
-    font-size: 5rem;
-   
-    flex-direction: column;
-    z-index: 1;
-
-}
-.win-display{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0, .7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    color:white;
-    font-size: 5rem;
-    
-    flex-direction: column;
-    z-index: 1;
-
-}
-.start-message button{
-    font-size: xx-large;
-    background-color: white;
-    cursor: pointer;
-}
-.win-display button{
-    font-size: xx-large;
-    background-color: white;
-    cursor: pointer;
-}
-.start-message.show{
-    display:flex
-}
-.win-display.show{
-    display: flex;
-}
-.time-display{
-    position: fixed;
-    top: 200px;
-    left: 1300px;
-    font-size: 3rem;
-}
-.controls-display{
-    position: fixed;
-    top: 475px;
-    left: 1200px;
-
-}
-.mobile-controls{
-    display: none;
-}
-
-@media screen
-and (max-width: 500px) {
-    :root{
-        --board-size: 320;
-        --board-size-px: 320px;
-        --player-size: calc(var(--board-size-px) / 20);
-    }
-    .start-message{
-        font-size: 1rem;
-    }
-    .win-display{
-        font-size: 1rem;
-    }
-    .wall-toggle{
-        font-size: .5rem;
-    }
-    #treasure{
-        font-size: .5rem;
-    }
-    .mobile-controls{
-        display:grid;
-        grid-template-columns: repeat(3,1fr);
-        grid-template-rows: repeat(3,1fr);
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-        justify-items: center;
-    }
-    .mobile-controls button{
-        font-size: 1.5rem;
-    }
-    #up-btn-div{
+  }
+  #up-btn-div {
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 1;
-    }
-    #left-btn-div{
+  }
+  #left-btn-div {
     grid-column-start: 1;
     grid-column-end: 1;
     grid-row-start: 2;
     grid-row-end: 2;
-    }
-    #right-btn-div{
+  }
+  #right-btn-div {
     grid-column-start: 3;
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 2;
-    }
-    #down-btn-div{
+  }
+  #down-btn-div {
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row-start: 3;
     grid-row-end: 3;
-    }
-    
-    
+  }
 }
