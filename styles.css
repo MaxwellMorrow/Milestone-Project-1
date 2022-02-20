@@ -291,13 +291,15 @@
     left: 1200px;
 
 }
-
+.mobile-controls{
+    display: none;
+}
 
 @media screen
 and (max-width: 500px) {
     :root{
-        --board-size: 250;
-        --board-size-px: 250px;
+        --board-size: 320;
+        --board-size-px: 320px;
         --player-size: calc(var(--board-size-px) / 20);
     }
     .start-message{
@@ -312,6 +314,42 @@ and (max-width: 500px) {
     #treasure{
         font-size: .5rem;
     }
-
+    .mobile-controls{
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(3,1fr);
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        justify-items: center;
+    }
+    .mobile-controls button{
+        font-size: 1.5rem;
+    }
+    #up-btn-div{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    }
+    #left-btn-div{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    }
+    #right-btn-div{
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    }
+    #down-btn-div{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
+    }
+    
     
 }
