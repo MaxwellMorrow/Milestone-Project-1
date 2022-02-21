@@ -193,4 +193,3 @@ window.addEventListener("touchend", (e) => {
     wallToggle.classList.remove("hide");
   }
 });
-

@@ -148,8 +148,15 @@ window.addEventListener("keypress", (e) => {
 startBtn.addEventListener("click", () => {
   startGame();
 });
+startBtn.addEventListener("touchend", () => {
+  startGame();
+});
 
 restartBtn.addEventListener("click", () => {
+  winDiv.classList.remove("show"); // hide our win message div by removing its class of show
+  startDiv.classList.add("show"); // show our start button again using the class of show
+});
+restartBtn.addEventListener("touchend", () => {
   winDiv.classList.remove("show"); // hide our win message div by removing its class of show
   startDiv.classList.add("show"); // show our start button again using the class of show
 });
