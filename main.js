@@ -171,4 +171,4 @@ moveEnemy3();
 setInterval(moveEnemy3, enemy3Speed * 10);
 displayTimes();
 // this will get our playersize every 5 seconds retaining our functionaility if we change our window size
-setInterval(getPlayerSize, 5000);
+setInterval(getPlayerSize, 1000);
